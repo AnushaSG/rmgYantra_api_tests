@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="4063" started-at="2020-06-27T03:45:02Z" finished-at="2020-06-27T03:45:07Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="4063" started-at="2020-06-27T03:45:02Z" finished-at="2020-06-27T03:45:07Z">
+      <class name="com.rmgYantra.tests.CreateEmployee">
+        <test-method status="PASS" signature="createEmployee()[pri:0, instance:com.rmgYantra.tests.CreateEmployee@1794d431]" name="createEmployee" duration-ms="4030" started-at="2020-06-27T09:15:03Z" finished-at="2020-06-27T09:15:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createEmployee -->
+      </class> <!-- com.rmgYantra.tests.CreateEmployee -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
