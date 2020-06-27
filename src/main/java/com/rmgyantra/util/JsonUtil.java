@@ -23,7 +23,6 @@ public class JsonUtil {
 
 	/**
 	 * getJsonList returns the values of json array from the specified jsonPath
-	 * 
 	 * @param response
 	 * @param jsonPath
 	 * @return

@@ -1,10 +1,15 @@
 package com.rmgyantra.genericlib;
 
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import static io.restassured.RestAssured.*;
+import static io.restassured.RestAssured.baseURI;
+import static io.restassured.RestAssured.port;
 
-import java.sql.SQLException;
+import java.sql.Connection;
+
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+
+import com.rmgyantra.util.PropertyUtil;
 
 /**
  * 
@@ -23,7 +28,22 @@ public class BaseLib {
 		// given().auth().preemptive().basic("", "");
 	}
 
-	@AfterSuite
-	public void afterSuite() throws SQLException {
+	/**
+	 * Connect to database
+	 */
+	@BeforeTest
+	public void connect() {
+		 GlobalVariables.con = DataBaseUtilities.connectToDB(PropertyUtil.readData(IConstants.DB_PROPERTIES_FILE_PATH, "dburl"),
+				PropertyUtil.readData(IConstants.DB_PROPERTIES_FILE_PATH, "username"),
+				PropertyUtil.readData(IConstants.DB_PROPERTIES_FILE_PATH, "password"));
 	}
+	
+	/**
+	 * close the db connections
+	 */
+	@AfterTest
+	public void disconnect() {
+		DataBaseUtilities.closeDb(GlobalVariables.con);
+	}
+
 }

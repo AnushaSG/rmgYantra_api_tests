@@ -8,6 +8,7 @@ import com.rmgyantra.util.PropertyUtil;
 
 /**
  * A class to perform actions on database
+ * 
  * @author Anusha
  */
 public class DataBaseUtilities {
@@ -39,13 +40,10 @@ public class DataBaseUtilities {
 	 * @throws IllegalAccessException
 	 * @throws InstantiationException
 	 */
-	public static Map<String, String> getDataFromDatabase(String query, String dburl, String username,
-			String password) {
+	public static Map<String, String> getDataFromDatabase(String query) {
 		Map<String, String> headerValuePairs = new HashMap();
-		Connection con = null;
 		try {
-			con = connectToDB(dburl, username, password);
-			ResultSet resultSet = con.createStatement().executeQuery(query);
+			ResultSet resultSet = GlobalVariables.con.createStatement().executeQuery(query);
 			ResultSetMetaData rsm = resultSet.getMetaData();
 			int columnsNumber = rsm.getColumnCount();
 			while (resultSet.next()) {
@@ -60,12 +58,6 @@ public class DataBaseUtilities {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				closeDb(con);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
 		return headerValuePairs;
 	}
@@ -76,7 +68,11 @@ public class DataBaseUtilities {
 	 * @param con
 	 * @throws SQLException
 	 */
-	public static void closeDb(Connection con) throws SQLException {
-		con.close();
+	public static void closeDb(Connection con) {
+		try {
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
